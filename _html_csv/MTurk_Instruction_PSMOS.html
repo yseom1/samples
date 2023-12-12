@@ -1,0 +1,59 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task successfully submit answers -->
+<crowd-form answer-format="flatten-objects">
+
+    <!-- The crowd-classifier element will create a tool for the Worker to select the 
+          correct answer to your question -->
+    <crowd-classifier 
+        categories="['5 - Completely similar prosody', '4.5', '4 - Mostly similar prosody', '3.5', '3 - Equally similar and dissimilar prosody', '2.5', '2 - Mostly dissimilar prosody', '1.5','1 - Completely dissimilar prosody']"
+        header="Listen to the sample of the test audio and assess: How similar is this test audio to the reference audio in terms of the prosody? Please focus only on the similarity of the prosody to the reference,
+        and ignore the differences of content, speaker, or audio quality."
+        name="PSMOS">
+        
+            <classification-target>
+                <strong>Reference audio</strong>
+                <audio controls="" style="width: 100%">
+
+                    <!-- Your audio file URLs will be substituted for the "prompt_url" variable 
+                          when you publish a batch with a CSV input file containing multiple 
+                          audio file URLs -->
+                    <source src="${prompt_url}" type="audio/mpeg" />
+                </audio>
+                <strong>Test audio</strong>
+                <audio controls="" style="width: 100%">
+
+                    <!-- Your audio file URLs will be substituted for the "audio_url" variable 
+                          when you publish a batch with a CSV input file containing multiple 
+                          audio file URLs -->
+                    <source src="${audio_url}" type="audio/mpeg" />
+                </audio>
+            </classification-target>
+
+        <!-- Use the short-instructions section for quick instructions that the Worker
+              will see while working on the task. Including some basic examples of 
+              good and bad answers here can help get good results. You can include 
+              any HTML here. -->
+        <short-instructions>             
+            <p>
+                In this test, your job is to evaluate the prosody similarity between a reference voice sample and an evaluation voice sample.
+                Focus solely on assessing how similar the prosody—intonation, rhythm, and stress patterns—sounds between the two samples.
+                Please disregard differences in content, speaker identity, and overall quality.
+                A rating closer to 5 indicates a higher similarity in prosody between the two voice samples.<br><br>
+            </p>
+            <strong>Note: </strong>It's highly recommended to wear headphones or a headset and to be in a quiet environment for precise assessment.
+        </short-instructions>
+
+        <!-- Use the full-instructions section for more detailed instructions that the 
+              Worker can open while working on the task. Including more detailed 
+              instructions and additional examples of good and bad answers here can 
+              help get good results. You can include any HTML here. -->
+        <full-instructions>
+        </full-instructions> 
+
+    </crowd-classifier>
+</crowd-form>

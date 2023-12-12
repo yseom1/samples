@@ -1,0 +1,58 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task successfully submit answers -->
+<crowd-form answer-format="flatten-objects">
+
+    <!-- The crowd-classifier element will create a tool for the Worker to select the 
+          correct answer to your question -->
+    <crowd-classifier 
+        categories="['5 - Completely similar speaker', '4.5', '4 - Mostly similar speaker', '3.5', '3 - Equally similar and dissimilar speaker', '2.5', '2 - Mostly dissimilar speaker', '1.5','1 - Completely dissimilar speaker']"
+        header="Listen to the sample of the test audio and assess: How similar is this test audio to the reference audio in terms of speaker? Please focus only on the similarity of the speaker to the reference audio. And disregard the differences of content, prosody, and quality of voices"
+        name="SMOS">
+        
+            <classification-target>
+                <strong>Reference audio</strong>
+                <audio controls="" style="width: 100%">
+
+                    <!-- Your audio file URLs will be substituted for the "prompt_url" variable 
+                          when you publish a batch with a CSV input file containing multiple 
+                          audio file URLs -->
+                    <source src="${prompt_url}" type="audio/mpeg" />
+                </audio>
+                <strong>Test audio</strong>
+                <audio controls="" style="width: 100%">
+
+                    <!-- Your audio file URLs will be substituted for the "audio_url" variable 
+                          when you publish a batch with a CSV input file containing multiple 
+                          audio file URLs -->
+                    <source src="${audio_url}" type="audio/mpeg" />
+                </audio>
+            </classification-target>
+
+        <!-- Use the short-instructions section for quick instructions that the Worker
+              will see while working on the task. Including some basic examples of 
+              good and bad answers here can help get good results. You can include 
+              any HTML here. -->
+        <short-instructions>             
+            <p>
+                In this test, you'll listen to both a reference voice sample and the voice sample for evaluation.
+                Your task is to assess the similarity between the speakers of these two voice samples.
+                Concentrate solely on determining how closely related the speakers sound, disregarding content, prosody, and quality differences between the voices.
+                A score closer to 5 suggests a higher similarity in speaker identity between the two voices.<br><br>
+            </p>
+            <strong>Note: </strong>It's highly recommended to wear headphones or a headset and to be in a quiet environment for precise assessment.
+        </short-instructions>
+
+        <!-- Use the full-instructions section for more detailed instructions that the 
+              Worker can open while working on the task. Including more detailed 
+              instructions and additional examples of good and bad answers here can 
+              help get good results. You can include any HTML here. -->
+        <full-instructions>
+        </full-instructions> 
+
+    </crowd-classifier>
+</crowd-form>
