@@ -37,15 +37,68 @@
                 A score closer to 5 implies higher quality of the voice.
                 Please consider the naturalness of speech, pronunciation accuracy, and overall sound quality when assigning your rating.<br><br>
             </p>
-            <strong>Note: </strong>It's highly recommended to wear headphones or a headset and to be in a quiet environment for precise assessment.
+            <strong>Note1: </strong>It's highly recommended to wear headphones or a headset and to be in a quiet environment for precise assessment.<br>
+            <strong>Note2: </strong>If you need example for scoring, please see below "More instructions" tab.
         </short-instructions>
 
         <!-- Use the full-instructions section for more detailed instructions that the 
               Worker can open while working on the task. Including more detailed 
               instructions and additional examples of good and bad answers here can 
               help get good results. You can include any HTML here. -->
-        <full-instructions>
-        </full-instructions> 
+              <full-instructions>
+                <body>
+                <pre>
+                Thank you for joining an our survey.<br>
+                For detailed description per score, check below a table.<br>
+                </pre>
+                <style type="text/css">
+                .tg  {border-collapse:collapse;border-spacing:0;}
+                .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                  overflow:hidden;padding:10px 5px;word-break:normal;}
+                .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                .tg .tg-baqh{text-align:center;vertical-align:top}
+                .tg .tg-ao2g{border-color:#333333;text-align:center;vertical-align:top}
+                .tg .tg-0lax{text-align:left;vertical-align:top}
+                .tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+                </style>
+                <table class="tg">
+                <thead>
+                  <tr>
+                    <th class="tg-ao2g">SCORE</th>
+                    <th class="tg-ao2g">Desc.</th>
+                    <th class="tg-ao2g">Detailed Desc.</th>
+                    <th class="tg-0lax">Test audio</th>
+                    <th class="tg-0lax"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-ao2g">5.0</td>
+                    <td class="tg-ao2g">Excellent</td>
+                    <td class="tg-de2y">Pronunciation is very clear. Any noise is not heard.</td>
+                    <td class="tg-0lax"><audio src="https://github.com/yseom1/samples/blob/main/_instruction_sample/qmos5_pred.wav?raw=true" type="audio/wav" controls></audio></td>
+                    <td class="tg-0lax"></td>
+                  </tr>
+                  <tr>
+                    <td class="tg-baqh">3.0</td>
+                    <td class="tg-baqh">Fair</td>
+                    <td class="tg-0lax">It has subtle degraded pronunciation. Sound quality of audio is generally fair.</td>
+                    <td class="tg-baqh"><audio src="https://github.com/yseom1/samples/blob/main/_instruction_sample/qmos3_pred.wav?raw=true" type="audio/wav" controls></audio></td>
+                    <td class="tg-baqh"></td>
+                  </tr>
+                  <tr>
+                    <td class="tg-baqh">1.0</td>
+                    <td class="tg-baqh">Bad</td>
+                    <td class="tg-0lax">It is not audible sound. Completely non speech.</td>
+                    <td class="tg-baqh">
+                      <audio src="https://github.com/yseom1/samples/blob/main/_instruction_sample/qmos1_pred.wav?raw=true" type="audio/wav" controls></audio></td>
+                    <td class="tg-baqh"></td>
+                  </tr>
+                </tbody>
+                </table>
+                </body>
+            </full-instructions> 
 
     </crowd-classifier>
 </crowd-form>
